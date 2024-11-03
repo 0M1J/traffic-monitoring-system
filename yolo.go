@@ -13,7 +13,8 @@ type ModelSession struct {
 	Output  *ort.Tensor[float32]
 }
 
-var modelPath = "./yolov8n.onnx"
+// var modelPath = "./yolov7-tiny.onnx"
+var modelPath = "./yolov8m.onnx"
 
 func getSharedLibPath() string {
 	switch runtime.GOOS {
