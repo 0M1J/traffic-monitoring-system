@@ -10,11 +10,17 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	modelSession, err := initSession()
+	imagePath := "car.png"
+	session, err := initSession()
 	if err != nil {
-		fmt.Printf("Error creating session and tensors: %s\n", err)
+		fmt.Printf("Failed to initialize session: %v\n", err)
+		return
 	}
-	defer modelSession.Destroy()
+	defer session.Destroy()
+
+	if err := RunModel(session, imagePath); err != nil {
+		fmt.Printf("Failed to run model: %v\n", err)
+	}
 
 	http.HandleFunc("/", helloHandler)
 
